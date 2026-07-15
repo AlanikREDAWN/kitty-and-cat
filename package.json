@@ -10,6 +10,7 @@
     "typescript": "^5"
   },
   "dependencies": {
-    "@slack/bolt": "^4.7.3"
+    "@slack/bolt": "^4.7.3",
+    "@slack/web-api": "^7.19.0"
   }
 }
