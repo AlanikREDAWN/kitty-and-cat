@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@openrouter/sdk": "^0.13.58",
+    "@opuu/cat-printer": "^0.1.0",
     "@slack/bolt": "^4.7.3",
-    "@slack/web-api": "^7.19.0"
+    "@slack/web-api": "^7.19.0",
+    "node-web-bluetooth": "^1.2.1"
   }
 }
