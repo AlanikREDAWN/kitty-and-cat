@@ -31,3 +31,7 @@ If you send a message with their name (Kitty or Cat), the word "status", and the
 ### Chat with you
 
 If you say their name (Kitty or Cat), and you don't include a greeting, a cat noise, or the word "status", they'll chat with you and respond based on what you say! (powered by [Hack Club AI](https://ai.hackclub.com))
+
+---
+
+Having issues? Message @KittyCat on Hack Club's Slack and let me know! suggestions and feedback are also welcome
