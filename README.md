@@ -36,6 +36,8 @@ If you say their name (Kitty or Cat), and you don't include a greeting, a cat no
 
 If you DM @Kitty with a message, she'll foward that message to my cat printer! Please do not spam this, and wait until Kitty responds with a sent confirmation before sending another message.
 
+Thanks to PinThePenguinOne for creating the base [cat printer script](https://github.com/PinThePenguinOne/MXW01_Thermal-Printer-Tool)! (I had to add like two lines of code to get it to work with my printer, but everything else is the same)
+
 ---
 
 Having issues? Message @KittyCat on Hack Club's Slack and let me know! suggestions and feedback are also welcome
