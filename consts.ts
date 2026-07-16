@@ -1,6 +1,7 @@
 import { resolve } from "bun";
 
 export const kitty_cat_playground = 'C0BFW6CB109';
+export const kitty_cat_control_room = 'C0BHHQL3GUA';
 export const greetings = ["hewo", "hi", "hello", "hey", "greetings", "hellooo"];
 export const cat_noises = ["meow", "mrow", "purr", "mrrr", "mew", "mrrp"];
 
