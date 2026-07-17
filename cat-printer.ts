@@ -6,7 +6,8 @@ export async function printCat(message: String, user: String) {
         const formattedMessage = message + " from " + user
 
         await $`sudo systemctl stop cat-printer-keepalive`
-        await Bun.sleep(2000)
+        
+        await $`bluetoothctl --timeout 5 scan on`
 
         await $`python3 MXW01print.py -t "${formattedMessage}" -d "${process.env.PRINTER}" -n "Geist Pixel" -z 24`
 
