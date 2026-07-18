@@ -1,8 +1,16 @@
 import { $ } from "bun";
 
+let printQueue: Promise<void> = Promise.resolve()
+
 export async function printCat(message: String, user: String) {
+    const result = printQueue.then(() => sendPrint(message, user));
+
+    printQueue = result.catch(() => {});
+    return result;
+}
+
+async function sendPrint(message: String, user: String) {
     try {
-        // const formattedMessage = "\n" + message
         const formattedMessage = message + " from " + user
 
         await $`sudo systemctl stop cat-printer-keepalive`
