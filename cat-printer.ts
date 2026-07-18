@@ -7,6 +7,7 @@ export async function printCat(message: String, user: String) {
 
         await $`sudo systemctl stop cat-printer-keepalive`
         
+        await Bun.sleep(1000)
 
         await $`python3 MXW01print.py -t "${formattedMessage}" -d "${process.env.PRINTER}" -n "Geist Pixel" -z 24`
 
