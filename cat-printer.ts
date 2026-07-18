@@ -5,14 +5,14 @@ export async function printCat(message: String, user: String) {
         // const formattedMessage = "\n" + message
         const formattedMessage = message + " from " + user
 
-        // await $`sudo systemctl stop cat-printer-keepalive`
+        await $`sudo systemctl stop cat-printer-keepalive`
         
 
         await $`python3 MXW01print.py -t "${formattedMessage}" -d "${process.env.PRINTER}" -n "Geist Pixel" -z 24`
 
-        // await $`sudo systemctl start cat-printer-keepalive`
+        await $`sudo systemctl start cat-printer-keepalive`
     } catch (error) {
-        // await $`sudo systemctl start cat-printer-keepalive`.catch(() => {})
+        await $`sudo systemctl start cat-printer-keepalive`.catch(() => {})
         throw error
     }
 }
