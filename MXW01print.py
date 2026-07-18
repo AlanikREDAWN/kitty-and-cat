@@ -666,7 +666,12 @@ async def main(args):
         print(f"Feed paper mode selected: {lines_to_feed} lines")
         print(f"Attempting to connect to printer at {target_address}...")
         try:
-            async with BleakClient(target_address, timeout=20.0) as client:
+            # async with BleakClient(target_address, timeout=20.0) as client:
+            device = await BleakScanner.find_device_by_address(target_address, timeout=20.0)
+            if device is None:
+                print(f"Bluetooth Error: Device with address {target_address} was not found")
+                sys.exit(1)
+            async with BleakClient(device, timeout=20.0) as client:
                 if not client.is_connected: print("Failed to connect."); sys.exit(1)
                 print(f"Connected to {client.address}")
                 try: await client.start_notify(NOTIFY_UUID, notification_handler)
@@ -717,7 +722,12 @@ async def main(args):
     print(f"Attempting to connect to printer at {target_address}...")
     overall_success = False # Assume failure unless all jobs succeed
     try:
-        async with BleakClient(target_address, timeout=20.0) as client:
+        # async with BleakClient(target_address, timeout=20.0) as client:
+        device = await BleakScanner.find_device_by_address(target_address, timeout=20.0)
+        if device is None:
+            print(f"Bluetooth Error: Device with address {target_address} was not found")
+            sys.exit(1)
+        async with BleakClient(device, timeout=20.0) as client:
             if not client.is_connected: print("Failed to connect."); sys.exit(1)
             print(f"Connected to {client.address}")
             try: await client.start_notify(NOTIFY_UUID, notification_handler)
