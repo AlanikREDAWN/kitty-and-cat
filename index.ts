@@ -430,68 +430,70 @@ kitty_app.event('message', async (event) => {
 
         let queueMessage: ChatPostMessageResponse;
 
-        await printCat(event.payload.text ?? "", userInfo.user?.profile?.display_name ?? "anon", async (update) => {
-            switch (update.status) {
-                case "queued":
-                    if (!queueMessage) {
-                        queueMessage = await kitty_client.chat.postMessage({
-                            channel: channel,
-                            text: `You're in the queue at position ${update.position}!`,
-                            thread_ts: event.payload.thread_ts || event.payload.ts,
-                        })
-                    } else {
-                        if (queueMessage.ts) {
-                            await kitty_client.chat.update({
-                                channel: channel,
-                                ts: queueMessage.ts,
-                                text: `You're in the queue at position ${update.position}!`
-                            })
-                        }
+        // await printCat(event.payload.text ?? "", userInfo.user?.profile?.display_name ?? "anon", async (update) => {
+        //     switch (update.status) {
+        //         case "queued":
+        //             if (!queueMessage) {
+        //                 queueMessage = await kitty_client.chat.postMessage({
+        //                     channel: channel,
+        //                     text: `You're in the queue at position ${update.position}!`,
+        //                     thread_ts: event.payload.thread_ts || event.payload.ts,
+        //                 })
+        //             } else {
+        //                 if (queueMessage.ts) {
+        //                     await kitty_client.chat.update({
+        //                         channel: channel,
+        //                         ts: queueMessage.ts,
+        //                         text: `You're in the queue at position ${update.position}!`
+        //                     })
+        //                 }
 
-                    }
-                    break;
+        //             }
+        //             break;
 
-                case "printing":
-                    if (!queueMessage) {
-                        queueMessage = await kitty_client.chat.postMessage({
-                            channel: channel,
-                            text: `your message is currently printing!`,
-                            thread_ts: event.payload.thread_ts || event.payload.ts,
-                        })
-                    } else {
-                        if (queueMessage.ts) {
-                            await kitty_client.chat.update({
-                                channel: channel,
-                                ts: queueMessage.ts,
-                                text: `your message is currently printing!`,
-                            })
-                        }
-                    }
-                    break;
+        //         case "printing":
+        //             if (!queueMessage) {
+        //                 queueMessage = await kitty_client.chat.postMessage({
+        //                     channel: channel,
+        //                     text: `your message is currently printing!`,
+        //                     thread_ts: event.payload.thread_ts || event.payload.ts,
+        //                 })
+        //             } else {
+        //                 if (queueMessage.ts) {
+        //                     await kitty_client.chat.update({
+        //                         channel: channel,
+        //                         ts: queueMessage.ts,
+        //                         text: `your message is currently printing!`,
+        //                     })
+        //                 }
+        //             }
+        //             break;
                 
-                case "success":
-                    await kitty_client.chat.postMessage({
-                        channel: channel, 
-                        text: `your message has successfully been printed!`,
-                        thread_ts: event.payload.thread_ts || event.payload.ts,
-                    });
-                    break;
+        //         case "success":
+        //             await kitty_client.chat.postMessage({
+        //                 channel: channel, 
+        //                 text: `your message has successfully been printed!`,
+        //                 thread_ts: event.payload.thread_ts || event.payload.ts,
+        //             });
+        //             break;
                 
-                case "failed":
-                    await kitty_client.chat.postMessage({
-                        channel: channel,
-                        text: `uh, oh! your print failed! message KittyCat to see if she can fix it`,
-                        thread_ts: event.payload.thread_ts || event.payload.ts,
-                    });
-                    break;
-            }
-        });
+        //         case "failed":
+        //             await kitty_client.chat.postMessage({
+        //                 channel: channel,
+        //                 text: `uh, oh! your print failed! message KittyCat to see if she can fix it`,
+        //                 thread_ts: event.payload.thread_ts || event.payload.ts,
+        //             })
+        //             break;
+        //     }
+        // });
 
-        // await kitty_client.chat.postMessage({
-        //     channel: channel, 
-        //     text: `sent to printer!`,
-        //     thread_ts: event.payload.thread_ts || event.payload.ts,
-        // })
+        await printCat(event.payload.text ?? "", userInfo.user?.profile?.display_name ?? "anon")
+
+        await kitty_client.chat.postMessage({
+            channel: channel, 
+            text: `sent to printer!`,
+            thread_ts: event.payload.thread_ts || event.payload.ts,
+        })
     }
 
 
