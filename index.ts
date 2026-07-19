@@ -510,3 +510,12 @@ kitty_app.event('message', async (event) => {
 
 await kitty_app.start();
 await cat_app.start();
+
+setInterval(async () => {
+    try {
+        await kitty_app.client.auth.test();
+    } catch (e) {
+        console.error('kitty_app health check failed...connection must be dead, restarting', e);
+        process.exit(1);
+    }
+}, 5 * 60 * 1000);
