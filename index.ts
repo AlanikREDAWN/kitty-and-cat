@@ -519,3 +519,15 @@ setInterval(async () => {
         process.exit(1);
     }
 }, 5 * 60 * 1000);
+
+const socketModeClient = (kitty_app as any).receiver.client;
+
+socketModeClient.on('disconnect', () => {
+    console.error('socket mode disconnected, restarting');
+    process.exit(1);
+});
+
+socketModeClient.on('error', (err: Error) => {
+    console.error('socket mode error, restarting', err);
+    process.exit(1);
+});
