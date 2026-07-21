@@ -418,17 +418,9 @@ kitty_app.event('message', async (event) => {
             }
         }
     } else {
-        // console.log("dm")
         let userInfo = await kitty_client.users.info({
             user: event.payload.user
         })
-
-        // user = userInfo.profile.display_name
-        // console.log(event.payload.user)
-        // console.log(userInfo.user.profile.display_name ?? "")
-        // console.log(userInfo.user.profile.display_name)
-
-        // let queueMessage: ChatPostMessageResponse;
 
         // await printCat(event.payload.text ?? "", userInfo.user?.profile?.display_name ?? "anon", async (update) => {
         //     switch (update.status) {
@@ -501,16 +493,6 @@ kitty_app.event('message', async (event) => {
             thread_ts: event.payload.thread_ts || event.payload.ts,
         })
     }
-
-
-    // if (channel === kitty_cat_playground) {
-
-    // }
-
-    
-
-
-
 
 });
 
