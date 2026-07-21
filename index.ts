@@ -428,7 +428,7 @@ kitty_app.event('message', async (event) => {
         // console.log(userInfo.user.profile.display_name ?? "")
         // console.log(userInfo.user.profile.display_name)
 
-        let queueMessage: ChatPostMessageResponse;
+        // let queueMessage: ChatPostMessageResponse;
 
         // await printCat(event.payload.text ?? "", userInfo.user?.profile?.display_name ?? "anon", async (update) => {
         //     switch (update.status) {
@@ -487,11 +487,17 @@ kitty_app.event('message', async (event) => {
         //     }
         // });
 
+        await kitty_client.chat.postMessage({
+            channel: channel,
+            text: `print request recieved, please wait for printing`,
+            thread_ts: event.payload.thread_ts || event.payload.ts
+        })
+
         await printCat(event.payload.text ?? "", userInfo.user?.profile?.display_name ?? "anon")
 
         await kitty_client.chat.postMessage({
             channel: channel, 
-            text: `sent to printer!`,
+            text: `successfully sent to printer!`,
             thread_ts: event.payload.thread_ts || event.payload.ts,
         })
     }
@@ -520,14 +526,14 @@ setInterval(async () => {
     }
 }, 5 * 60 * 1000);
 
-const socketModeClient = (kitty_app as any).receiver.client;
+// const socketModeClient = (kitty_app as any).receiver.client;
 
-socketModeClient.on('disconnect', () => {
-    console.error('socket mode disconnected, restarting');
-    process.exit(1);
-});
+// socketModeClient.on('disconnect', () => {
+//     console.error('socket mode disconnected, restarting');
+//     process.exit(1);
+// });
 
-socketModeClient.on('error', (err: Error) => {
-    console.error('socket mode error, restarting', err);
-    process.exit(1);
-});
+// socketModeClient.on('error', (err: Error) => {
+//     console.error('socket mode error, restarting', err);
+//     process.exit(1);
+// });
