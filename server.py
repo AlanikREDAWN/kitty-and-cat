@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-@join_app.route('/slack/events', methods=['POST'])
+@app.route('/slack/events', methods=['POST'])
 def slack_events():
     data = request.json
 
